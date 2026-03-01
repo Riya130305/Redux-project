@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const UNSLASH_KEY = import.meta.env.VITE_UNSLASH_KEY;
+const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_KEY;
 
 // API instaonce for fetching photos from unsplash
 
 export const fetchPhoto=axios.create({
     baseURL:"https://api.unsplash.com",
     headers: {
-        Authorization: `Client-ID ${UNSLASH_KEY}`,
+        Authorization: `Client-ID ${UNSPLASH_KEY}`,
    },
 })
 
@@ -23,4 +23,23 @@ export interface UnsplashPhoto{
 //response
 export interface UnsplashPhotoResponse{
     results: UnsplashPhoto[];
+}
+
+// funtion to fetch photos from unsplash
+export const searchImages = async(
+    query:string,
+    page: number,
+    per_page: number,
+): Promise<UnsplashPhotoResponse> => {
+    const response =await fetchPhoto.get<UnsplashPhotoResponse>
+    ("/search/photos",
+        {
+            params:{
+                query,
+                page,
+                per_page,
+            }
+        }
+    );
+    return response.data;
 }

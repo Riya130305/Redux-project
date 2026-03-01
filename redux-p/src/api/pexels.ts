@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const PEXELS_KEY = import.meta.env.VITE_PEXCLE_KEY;
+const PEXELS_KEY = import.meta.env.VITE_PEXELS_KEY;
 if (!PEXELS_KEY) {
   throw new Error("Pexels API key missing");
 }
+// API instance for fetching videos from pexels
 export const fetchVideos=axios.create({
     baseURL:"https://api.pexels.com",
     headers:{
