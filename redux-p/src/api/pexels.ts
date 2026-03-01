@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PEXELS_KEY = import.meta.env.VITE_PEXELS_KEY;
+const PEXELS_KEY = import.meta.env.VITE_PEXCLE_KEY;
 if (!PEXELS_KEY) {
   throw new Error("Pexels API key missing");
 }
@@ -24,4 +24,23 @@ export interface PexelsVideo{
 // response
 export interface PexelsVideoResponse{
     videos: PexelsVideo[];
+}
+
+// function to fetch videos from pexels
+export const searchVidos = async(
+    query:string,
+    page: 1,
+    per_page: 20,
+): Promise<PexelsVideoResponse> => {
+    const response = await fetchVideos.get<PexelsVideoResponse>
+    ("/videos/search",
+        {
+            params:{
+                query,
+                page,
+                per_page,
+            }
+        }
+    );
+    return response.data;
 }

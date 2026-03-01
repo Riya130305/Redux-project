@@ -1,11 +1,17 @@
+import { searchVidos } from './api/pexels'
 import './App.css'
 
 function App() {
 
 
   return (
-    <div >
-      <h1 className="h-screen w-full bg-gray-800 text-white">Heyy</h1>
+    <div className='bg-blue-400 h-screen w-screen flex items-center justify-center'>
+      <button onClick={()=>{
+        searchVidos("nature", 1, 20)
+        .then((Response)=>{
+          console.log(Response);
+        })
+      }}>Button</button>
     </div>
   )
 }
